@@ -126,29 +126,33 @@ function StudentList() {
       </button>
 
       <div style={styles.listContainer}>
-        {students.map(student => (
-          <div key={student._id} style={styles.card}>
-            <div style={styles.cardTitle}>{student.name}</div>
-            <div style={styles.cardDetails}>
-              Age: {student.age}<br />
-              Grade: {student.grade}
+        {students.length > 0 ? (
+          students.map(student => (
+            <div key={student._id} style={styles.card}>
+              <div style={styles.cardTitle}>{student.name}</div>
+              <div style={styles.cardDetails}>
+                Age: {student.age}<br />
+                Grade: {student.grade}
+              </div>
+              <div style={styles.listButtons}>
+                <button 
+                  onClick={() => editStudent(student)} 
+                  style={styles.editButton}
+                >
+                  Edit
+                </button>
+                <button 
+                  onClick={() => deleteStudent(student._id)} 
+                  style={styles.deleteButton}
+                >
+                  Delete
+                </button>
+              </div>
             </div>
-            <div style={styles.listButtons}>
-              <button 
-                onClick={() => editStudent(student)} 
-                style={styles.editButton}
-              >
-                Edit
-              </button>
-              <button 
-                onClick={() => deleteStudent(student._id)} 
-                style={styles.deleteButton}
-              >
-                Delete
-              </button>
-            </div>
-          </div>
-        ))}
+          ))
+        ) : (
+          <p>No students found.</p>
+        )}
       </div>
     </div>
   );
